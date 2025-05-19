@@ -17,4 +17,7 @@ yarn-error.log
 
 # OS files
 .DS_Store
-Thumbs.db 
+Thumbs.db
+
+# GitHub CLI
+gh auth login
