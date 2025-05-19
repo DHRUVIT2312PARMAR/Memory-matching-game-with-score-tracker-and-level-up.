@@ -1,0 +1,177 @@
+/* General Reset and Fonts */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to right, #111827, #1f2937);
+    color: #fff;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  /* Loader */
+  #loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #111;
+    z-index: 9999;
+  }
+  
+  /* Card Container */
+  .game-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1.5rem;
+    padding: 1.5rem;
+    justify-items: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  #gameBoard {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    opacity: 0;
+    transition: opacity 0.8s ease-in;
+  }
+
+  #gameBoard.visible {
+    opacity: 1;
+  }
+  
+  /* Flip Card Style */
+  .flip-card {
+  width: 120px;
+  height: 120px;
+  perspective: 1000px;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  transform-style: preserve-3d;
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  top: 0;
+  left: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flip-card-front img,
+.flip-card-back img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.flip-card-front {
+  background-color: #1f2937;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flip-card-front img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+}
+
+.flip-card-back {
+  background: #374151;
+  transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+/* Temporary reveal highlight */
+.flip-card.temp-reveal {
+  box-shadow: 0 0 10px 4px rgba(255, 255, 255, 0.6);
+}
+
+/* Smooth shadow transition */
+.flip-card {
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.flip-card:hover {
+  box-shadow: 0 0 12px 4px rgba(100, 149, 237, 0.7);
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+  /* Sparkle animation */
+  @keyframes sparkle {
+    0%, 100% {
+      box-shadow: 0 0 8px 4px rgba(255, 215, 0, 0.8);
+    }
+    50% {
+      box-shadow: 0 0 16px 8px rgba(255, 255, 255, 1);
+    }
+  }
+
+  .flip-card.matched {
+    animation: sparkle 1.5s infinite;
+    border-radius: 10px;
+  }
+  
+  .flip-card-front {
+    justify-content: center;
+  }
+  
+  /* Modal Styles */
+  .modal-content {
+    background-color: #1f2937;
+    color: white;
+    border-radius: 10px;
+  }
+  
+  .btn-success {
+    background-color: #10b981;
+    border: none;
+  }
+  
+  /* Company Selector Dropdown */
+  select#favoriteCompany {
+    background-color: #111827;
+    color: #fff;
+    border: 1px solid #374151;
+  }
+  
+  select#favoriteCompany:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.25);
+  }
+  
+  /* Responsive Tweak */
+  @media (max-width: 768px) {
+    .flip-card {
+      height: 140px;
+    }
+  }
+  
