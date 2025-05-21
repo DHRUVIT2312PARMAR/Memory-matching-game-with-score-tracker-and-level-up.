@@ -1,0 +1,13 @@
+{
+  "name": "memory-matching-game",
+  "version": "1.0.0",
+  "description": "A memory matching game with company logos",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve .",
+    "build": "echo 'No build step required'"
+  },
+  "dependencies": {
+    "serve": "^14.2.1"
+  }
+} 
