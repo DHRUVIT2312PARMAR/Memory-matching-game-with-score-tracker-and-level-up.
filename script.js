@@ -36,6 +36,9 @@ $(document).ready(function () {
     $("#gameBoard").empty();
     matchedPairs = 0;
     coins = 0; // Reset coins
+    remainingFlips = 20;
+    $("#flipsRemaining").text(remainingFlips);
+    flipsUsed = 0;
     $("#coinCount").text(coins); // Update coin display
 
     shuffledCards.forEach((company, index) => {
@@ -66,6 +69,16 @@ $(document).ready(function () {
   // Card Click
   $("#gameBoard").on("click", ".flip-card", function () {
     if (lockBoard || $(this).hasClass("matched") || $(this).hasClass("flipped")) return;
+
+    if (remainingFlips <= 0) {
+      const restart = confirm("🛑 Out of flips! Click OK to restart game");
+      if (restart) {
+        $('#startGame').click();
+      } else {
+        $('#coinShop').click();
+      }
+      return;
+    }
 
     $(this).addClass("flipped");
     selectedCards.push($(this));
@@ -115,6 +128,9 @@ $(document).ready(function () {
           lockBoard = false;
         }, 800);
       }
+      remainingFlips--;
+      flipsUsed++;
+      $("#flipsRemaining").text(remainingFlips);
     }
   });
 
@@ -248,16 +264,14 @@ $(document).ready(function () {
 
   // Buy flips function
   function buyFlips() {
-    if (coins < 5) {
-      alert("Not enough coins! You need at least 5 coins.");
+    if (coins < 3) {
+      alert("❌ You need 3 coins!");
       return;
     }
     
-    coins -= 5;
-    remainingFlips += 3;
-    $("#coinCount").text(coins);
-    $("#flipsRemaining").text(remainingFlips);
-    alert(`Purchased 3 more flips!`);
+    coins -= 3;
+    remainingFlips += 5;
+    alert("➕ Gained 5 flips!");
   }
 
   // Coin shop modal handlers
